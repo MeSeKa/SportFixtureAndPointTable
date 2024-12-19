@@ -1,0 +1,36 @@
+﻿@model SportFixtureAndPointTable.Models.MatchResult
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MatchResult</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HomeScore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HomeScore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AwayScore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AwayScore)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Fixture)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Fixture.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,62 @@
+﻿@model SportFixtureAndPointTable.Models.Fixture
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+<h1>Create Fixture</h1>
+
+<hr />
+<div class="row">
+	<div class="col-md-6">
+		<form asp-action="Create" id="fixtureForm">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<div class="form-group">
+				<label asp-for="HomeTeamId" class="control-label">Select Home Team</label>
+				<select asp-for="HomeTeamId" class="form-control" asp-items="ViewBag.Teams" id="homeTeam">
+					<option value="">-- Select a Team --</option>
+				</select>
+				<span asp-validation-for="HomeTeamId" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="AwayTeamId" class="control-label">Select Away Team</label>
+				<select asp-for="AwayTeamId" class="form-control" asp-items="ViewBag.Teams" id="awayTeam">
+					<option value="">-- Select a Team --</option>
+				</select>
+				<span asp-validation-for="AwayTeamId" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="MatchDate" class="control-label">Match Date</label>
+				<input asp-for="MatchDate" class="form-control" type="date" />
+				<span asp-validation-for="MatchDate" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mt-3">
+				<button type="submit" class="btn btn-primary" onclick="validateTeams(event)">Create</button>
+				<a asp-action="Index" class="btn btn-secondary">Cancel</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+		<script>
+			function validateTeams(event) {
+				const homeTeam = document.getElementById('homeTeam').value;
+				const awayTeam = document.getElementById('awayTeam').value;
+
+				if (homeTeam && awayTeam && homeTeam === awayTeam) {
+					event.preventDefault();
+					alert('Home Team and Away Team cannot be the same. Please select different teams.');
+				}
+			}
+		</script>
+
+	}
+}
